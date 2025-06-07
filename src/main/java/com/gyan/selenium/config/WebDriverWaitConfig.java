@@ -16,7 +16,6 @@ public class WebDriverWaitConfig {
     private long timeput;
 
     @Bean
-    @Lazy
     public WebDriverWait waitConfig(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeput));
         return wait;
