@@ -1,27 +1,44 @@
 package com.gyan.selenium.config;
 
-import com.gyan.selenium.annotations.ThreadScopeBean;
+
+import com.gyan.selenium.annotation.LazyConfiguration;
+import com.gyan.selenium.annotation.ThreadScopeBean;
+import com.gyan.selenium.factory.BrowserManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 
-@Configuration
+//@Profile("!remote")
+@LazyConfiguration
 public class WebDriverConfig {
 
-    @ThreadScopeBean
-    @ConditionalOnProperty(name = "browser", havingValue = "firefox")
-    public WebDriver firefoxDriver() {
-        return new FirefoxDriver();
+
+    private final WebDriver driver;
+
+    public WebDriverConfig() {
+        this.driver = createWebDriver();
+    }
+
+    private WebDriver createWebDriver() {
+        String browser = BrowserManager.getBrowser();
+        switch (browser) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver();
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return new FirefoxDriver();
+            default:
+                throw new UnsupportedOperationException("browser is not supported yet");
+
+        }
     }
 
     @ThreadScopeBean
-    @ConditionalOnMissingBean
-    public WebDriver chromeDriver() {
-        return new ChromeDriver();
+    public WebDriver webDriver() {
+        return this.driver;
     }
+
+
 }

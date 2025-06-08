@@ -1,19 +1,35 @@
 package com.gyan.selenium.pages;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import com.gyan.selenium.annotation.Page;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-@Component
+
+@Page
 public class LoginPage extends BasePage {
 
-    @Value("${application.url}")
-    private String url;
+    @FindBy(name = "username")
+    private WebElement userName;
 
-    public void openPage() {
-        driver.get(url);
-    }
+    @FindBy(name = "password")
+    private WebElement password;
 
+    @FindBy(tagName = "button")
+    private WebElement loginButton;
+
+    @Override
     public boolean isLoaded() {
-        return wait.until(driver -> driver.getTitle().contains("OrangeHRM"));
+        driver.get("https://start.spring.io/");
+//        return wait.until(driver -> driver.getTitle().equals("Spring Initializr"));
+        return true;
     }
+
+    public boolean login(String userName, String password) {
+        this.userName.sendKeys(userName);
+        this.password.sendKeys(password);
+        loginButton.click();
+        return wait.until(webDriver -> loginButton.isDisplayed());
+    }
+
+
 }

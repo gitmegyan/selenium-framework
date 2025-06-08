@@ -1,5 +1,6 @@
 package com.gyan.selenium.pages;
 
+import com.gyan.selenium.annotation.LazyAutowired;
 import jakarta.annotation.PostConstruct;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 public abstract class BasePage {
-
     @Autowired
     protected WebDriver driver;
 
@@ -16,9 +16,10 @@ public abstract class BasePage {
     protected WebDriverWait wait;
 
     @PostConstruct
-    protected void initializePageElements() {
+    private void setPageFactory() {
         PageFactory.initElements(driver, this);
     }
 
     abstract boolean isLoaded();
+
 }

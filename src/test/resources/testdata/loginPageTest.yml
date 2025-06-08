@@ -1,0 +1,14 @@
+- testcaseId: TC0001
+  testcaseDescription:
+  testType:
+  steps:
+    - login
+    - dashboard
+  pages:
+   login:
+    userName:
+    password:
+   home:
+
+
+
