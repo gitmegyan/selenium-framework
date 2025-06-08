@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Scope;
 
 import java.lang.annotation.*;
 
-@Bean
+@Bean(destroyMethod = "quit")
 @Scope("browserscope")
 @Documented
 @Target({ElementType.METHOD})
