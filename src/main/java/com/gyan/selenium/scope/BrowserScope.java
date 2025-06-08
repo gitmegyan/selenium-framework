@@ -7,6 +7,7 @@ import org.springframework.context.support.SimpleThreadScope;
 
 import java.util.Objects;
 
+
 public class BrowserScope extends SimpleThreadScope {
 
 

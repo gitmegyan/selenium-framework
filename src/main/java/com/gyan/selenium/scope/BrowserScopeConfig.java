@@ -11,5 +11,4 @@ public class BrowserScopeConfig {
     public static BeanFactoryPostProcessor beanFactoryPostProcessor(){
         return new BrowserScopePostProcessor();
     }
-
 }

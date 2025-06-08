@@ -7,11 +7,7 @@ import com.gyan.selenium.factory.BrowserManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 //@Profile("!remote")
 @LazyConfiguration
@@ -44,19 +40,5 @@ public class WebDriverConfig {
         return this.driver;
     }
 
-//    @ThreadScopeBean
-//    @ConditionalOnProperty(name = "browser", havingValue = "firefox")
-//    public WebDriver firefoxDriver(){
-//
-//        WebDriverManager.firefoxdriver().setup();
-//        return new FirefoxDriver();
-//    }
-//
-//    @ThreadScopeBean
-//    @ConditionalOnMissingBean
-//    public WebDriver chromeDriver(){
-//        WebDriverManager.chromedriver().setup();
-//        return new ChromeDriver();
-//    }
 
 }

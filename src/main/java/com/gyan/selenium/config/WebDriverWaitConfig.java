@@ -21,7 +21,6 @@ public class WebDriverWaitConfig {
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public WebDriverWait webdriverWait(WebDriver driver){
         return new WebDriverWait(driver, Duration.ofSeconds(this.timeout));
-        // return new WebDriverWait(driver, this.timeout);
     }
 
 }
