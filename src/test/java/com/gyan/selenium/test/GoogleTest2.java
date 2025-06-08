@@ -3,11 +3,10 @@ package com.gyan.selenium.test;
 import com.gyan.selenium.annotation.LazyAutowired;
 import com.gyan.selenium.pages.HomePage;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 @Slf4j
-public class GoogleTest extends BaseTest {
+public class GoogleTest2 extends BaseTest {
 
     @LazyAutowired
     private HomePage homePage;
